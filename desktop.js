@@ -2,8 +2,7 @@
 (() => {
   'use strict';
   const root = document.documentElement;
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const motionAllowed = () => !reduced.matches && !root.classList.contains('motion-off') && !document.hidden;
+  const motionAllowed = () => !root.classList.contains('motion-off') && !document.hidden;
   const progress = document.createElement('div');
   progress.className = 'page-progress'; progress.setAttribute('aria-hidden','true');
   document.body.append(progress);
@@ -46,12 +45,12 @@
   document.addEventListener('click',e=>{if(!motionAllowed()||e.target.closest('dialog')||e.detail===0)return;for(let i=0;i<8;i++)bit(e.clientX,e.clientY,true,i);});
   const motionButton=document.querySelector('.motion-button');
   function syncMotion(){
-    const off=!motionAllowed() && !document.hidden;
-    if(motionButton){motionButton.disabled=reduced.matches;motionButton.setAttribute('aria-pressed',String(off));motionButton.textContent=reduced.matches?'Reduced motion':off?'Resume motion':'Pause motion';}
-    if(root.classList.contains('motion-off')||reduced.matches){fx?.replaceChildren();document.querySelectorAll('.reveal').forEach(el=>el.classList.remove('is-pending'));}
+    const off=root.classList.contains('motion-off');
+    if(motionButton){motionButton.disabled=false;motionButton.setAttribute('aria-pressed',String(off));motionButton.textContent=off?'Resume motion':'Pause motion';}
+    if(off){fx?.replaceChildren();document.querySelectorAll('.reveal').forEach(el=>el.classList.remove('is-pending'));}
   }
   new MutationObserver(syncMotion).observe(root,{attributes:true,attributeFilter:['class']});
-  reduced.addEventListener('change',syncMotion);document.addEventListener('leo:settings',syncMotion);syncMotion();
+  document.addEventListener('leo:settings',syncMotion);syncMotion();
 
   const stage=document.querySelector('.desktop-stage');
   let topWindow=6;

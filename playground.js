@@ -3,7 +3,6 @@
   'use strict';
 
   const root = document.documentElement;
-  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
   const STORE = 'leo-os-playground-v1';
   const definitions = [
     { id: 'hello', name: 'First contact', hint: 'The terminal appreciates a friendly greeting.', detail: 'Said hello to the little computer.' },
@@ -36,16 +35,16 @@
     }
   } catch {  }
   function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch {  } }
-  function motionAllowed() { return !media.matches && !root.classList.contains('motion-off'); }
+  function motionAllowed() { return !root.classList.contains('motion-off'); }
   function refreshMotionButtons() {
-    const off = media.matches || root.classList.contains('motion-off');
+    const off = root.classList.contains('motion-off');
     document.querySelectorAll('.motion-button').forEach(button => {
       button.setAttribute('aria-pressed', String(off));
       button.textContent = off ? 'Resume motion' : 'Pause motion';
     });
   }
   root.dataset.palette = state.palette;
-  if (state.motionOff || media.matches) root.classList.add('motion-off');
+  root.classList.toggle('motion-off', state.motionOff);
   refreshMotionButtons();
 
   const notification = document.createElement('div');
@@ -464,11 +463,11 @@
 
   function applySettings() {
     root.dataset.palette = state.palette;
-    root.classList.toggle('motion-off', state.motionOff || media.matches);
+    root.classList.toggle('motion-off', state.motionOff);
     refreshMotionButtons();
-    if (state.motionOff || media.matches) document.querySelectorAll('.reveal').forEach(el => el.classList.remove('is-pending'));
+    if (state.motionOff) document.querySelectorAll('.reveal').forEach(el => el.classList.remove('is-pending'));
     save();
-    document.dispatchEvent(new CustomEvent('leo:settings', { detail: { palette: state.palette, motionOff: state.motionOff || media.matches } }));
+    document.dispatchEvent(new CustomEvent('leo:settings', { detail: { palette: state.palette, motionOff: state.motionOff } }));
   }
   function renderSettings() {
     body.innerHTML = '<h3>A desktop with a few preferences</h3><fieldset class="pg-setting-group"><legend>Desktop palette</legend><div class="pg-themes"><button type="button" data-palette="paper"><span class="pg-theme-preview pg-theme-paper" aria-hidden="true"></span>Paper</button><button type="button" data-palette="midnight"><span class="pg-theme-preview pg-theme-midnight" aria-hidden="true"></span>Midnight</button><button type="button" data-palette="peach"><span class="pg-theme-preview pg-theme-peach" aria-hidden="true"></span>Peach</button><button type="button" data-palette="phosphor"><span class="pg-theme-preview pg-theme-phosphor" aria-hidden="true"></span>Green screen</button><button type="button" data-palette="xp"><span class="pg-theme-preview pg-theme-xp" aria-hidden="true"></span>XP Blue</button></div></fieldset><fieldset class="pg-setting-group"><legend>Motion</legend><label class="pg-checkbox"><input type="checkbox" id="pg-reduce-motion"> Pause decorative motion</label><p class="pg-motion-note"></p></fieldset><fieldset class="pg-setting-group"><legend>Saved data</legend><button type="button" data-clear-data>Clear data</button><div id="pg-reset-confirm" hidden><p>Clear discoveries, scores, display settings, and terminal data?</p><div class="pg-reset-actions"><button type="button" class="pg-primary" data-clear-confirmed>Yes, clear data</button><button type="button" data-clear-cancel>Cancel</button></div></div></fieldset>';
@@ -496,24 +495,19 @@
       if (!clearSavedData()) confirmReset.disabled = false;
     });
     const motion = body.querySelector('#pg-reduce-motion');
-    motion.checked = state.motionOff || root.classList.contains('motion-off') || media.matches;
-    motion.disabled = media.matches;
-    body.querySelector('.pg-motion-note').textContent = media.matches ? 'Reduced motion is enabled by your operating system.' : 'Stops decorative movement.';
+    motion.checked = root.classList.contains('motion-off');
+    motion.disabled = false;
+    body.querySelector('.pg-motion-note').textContent = 'Stops decorative movement.';
     motion.addEventListener('change', () => { state.motionOff = motion.checked; applySettings(); setStatus(state.motionOff ? 'Decorative motion paused' : 'Decorative motion resumed'); });
     setStatus('Preferences are local to this browser');
   }
-  media.addEventListener('change', () => { applySettings(); if (dialog.open && currentApp === 'settings') renderSettings(); });
   const motionObserver = new MutationObserver(() => {
-    if (media.matches) {
-      if (!root.classList.contains('motion-off')) root.classList.add('motion-off');
-    } else {
-      const off = root.classList.contains('motion-off');
-      if (state.motionOff !== off) { state.motionOff = off; save(); }
-    }
+    const off = root.classList.contains('motion-off');
+    if (state.motionOff !== off) { state.motionOff = off; save(); }
     refreshMotionButtons();
     if (dialog.open && currentApp === 'settings') {
       const toggle = body.querySelector('#pg-reduce-motion');
-      if (toggle) { toggle.checked = media.matches || root.classList.contains('motion-off'); toggle.disabled = media.matches; }
+      if (toggle) { toggle.checked = off; toggle.disabled = false; }
     }
   });
   motionObserver.observe(root, { attributes: true, attributeFilter: ['class'] });

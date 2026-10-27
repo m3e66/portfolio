@@ -2,7 +2,6 @@
 (() => {
   'use strict';
   const root = document.documentElement;
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   document.querySelectorAll('[data-case-slideshow]').forEach(carousel => {
     const slides = [...carousel.querySelectorAll('[data-slide]')];
     if (slides.length < 2) return;
@@ -12,7 +11,7 @@
     const announcement = carousel.querySelector('[data-slide-announcement]');
     let current = 0, paused = false, hovered = false, visible = true;
     let changedAt = performance.now();
-    const motionBlocked = () => reduced.matches || root.classList.contains('motion-off');
+    const motionBlocked = () => root.classList.contains('motion-off');
     const sync = () => {
       const blocked = motionBlocked();
       play.disabled = blocked;
@@ -49,7 +48,6 @@
       }, { threshold: .15 }).observe(carousel);
     }
     new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['class'] });
-    reduced.addEventListener('change', sync);
     sync();
     setInterval(() => {
       if (paused || motionBlocked() || hovered || !visible || document.hidden || document.querySelector('dialog[open]') || carousel.contains(document.activeElement)) return;

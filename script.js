@@ -1,6 +1,11 @@
 
 'use strict';
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+// Restore the site's motion preference before setting up entrance effects.
+const motionRoot = document.documentElement;
+try {
+  const saved = JSON.parse(localStorage.getItem('leo-os-playground-v1') || 'null');
+  motionRoot.classList.toggle('motion-off', saved?.motionOff === true);
+} catch { /* Keep the on-page motion controls available without storage. */ }
 const menuButton = document.querySelector('.menu-button');
 const navigation = document.querySelector('.nav-links');
 function closeMenu() {
@@ -25,7 +30,7 @@ document.addEventListener('keydown', e => {
 
 const reveals = [...document.querySelectorAll('.reveal')];
 let entranceObserver;
-if ('IntersectionObserver' in window && !reducedMotion.matches) {
+if ('IntersectionObserver' in window && !motionRoot.classList.contains('motion-off')) {
   entranceObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -41,7 +46,6 @@ function showAllContent() {
   entranceObserver?.disconnect();
   reveals.forEach(el => { el.classList.remove('is-pending'); el.classList.add('is-visible'); });
 }
-reducedMotion.addEventListener('change', event => { if (event.matches) showAllContent(); });
 
 const motionButton = document.querySelector('.motion-button');
 motionButton?.addEventListener('click', () => {
@@ -54,7 +58,7 @@ motionButton?.addEventListener('click', () => {
 if (window.matchMedia('(pointer: fine)').matches) {
   document.querySelectorAll('.project-feature').forEach(card => {
     card.addEventListener('pointermove', e => {
-      if (reducedMotion.matches || document.documentElement.classList.contains('motion-off')) return;
+      if (motionRoot.classList.contains('motion-off')) return;
       const rect = card.getBoundingClientRect();
       card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
       card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
