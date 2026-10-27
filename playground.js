@@ -1,3 +1,4 @@
+
 (() => {
   'use strict';
 
@@ -571,3 +572,4 @@
   updateCounters();
   window.LeoPlayground = Object.freeze({ open, unlock });
 })();
+

@@ -1,3 +1,4 @@
+
 (() => {
   'use strict';
   const clipArt = '<svg viewBox="0 0 100 130" aria-hidden="true"><path d="M67 98V30c0-29-43-29-43 0v70c0 32 56 32 56 0V29" fill="none" stroke="#33415e" stroke-width="12" stroke-linecap="round"/><path d="M67 98V30c0-29-43-29-43 0v70c0 32 56 32 56 0V29" fill="none" stroke="#d2dae4" stroke-width="7" stroke-linecap="round"/><ellipse cx="39" cy="48" rx="11" ry="14" fill="white" stroke="#33415e" stroke-width="2"/><ellipse cx="62" cy="48" rx="11" ry="14" fill="white" stroke="#33415e" stroke-width="2"/><circle cx="43" cy="51" r="4" fill="#24334a"/><circle cx="59" cy="51" r="4" fill="#24334a"/><path d="M42 77q9 9 18 0" fill="none" stroke="#33415e" stroke-width="3" stroke-linecap="round"/></svg>';

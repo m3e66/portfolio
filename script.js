@@ -1,3 +1,4 @@
+
 'use strict';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const menuButton = document.querySelector('.menu-button');

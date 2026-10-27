@@ -1,3 +1,4 @@
+
 .playground-shortcuts{grid-template-columns:repeat(7,minmax(0,1fr));margin-bottom:28px}
 .playground-shortcuts .desktop-shortcut{font-size:13px;gap:10px;padding:10px 4px}
 .playground-shortcuts .pixel-icon{width:38px;height:38px}

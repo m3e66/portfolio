@@ -1,3 +1,4 @@
+
 @font-face{font-family:Space;src:url('assets/space-grotesk.woff2') format('woff2');font-weight:400 700;font-display:swap}
 @font-face{font-family:DM;src:url('assets/dm-sans.woff2') format('woff2');font-weight:400 700;font-display:swap}
 :root{color-scheme:dark;--bg:#101412;--panel:#191e1b;--ink:#f0f1e9;--muted:#a5aea6;--line:#303831;--accent:#d1e8a0;--gold:#dfbd7d;--cyan:#9de5dc;--radius:12px;--display:Space,'Segoe UI',sans-serif;--body:DM,'Segoe UI',sans-serif}
