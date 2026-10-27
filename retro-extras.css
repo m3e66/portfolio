@@ -1,0 +1,68 @@
+.playground-shortcuts{grid-template-columns:repeat(7,minmax(0,1fr));margin-bottom:28px}
+.playground-shortcuts .desktop-shortcut{font-size:13px;gap:10px;padding:10px 4px}
+.playground-shortcuts .pixel-icon{width:38px;height:38px}
+@media(max-width:850px){.playground-shortcuts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:560px){.playground-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tool-launcher{max-height:calc(100svh - var(--taskbar-height) - 18px);overflow-y:auto}
+.pg-mines-window{width:min(430px,calc(100vw - 28px))}
+.pg-mines-window[data-mine-level=medium]{width:min(640px,calc(100vw - 28px))}
+.pg-mines-window[data-mine-level=expert]{width:min(1030px,calc(100vw - 28px))}
+.pg-mines-window .pg-body{padding:20px}
+.rx-mine-settings{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-bottom:14px;font-size:13px}
+.rx-mine-settings select{flex:1;min-width:min(170px,100%);max-width:100%;padding:7px 5px;background:var(--pg-inset);color:var(--pg-ink);border:2px inset #c6c6bd;border-radius:0;font:inherit}
+.rx-mine-settings select:focus-visible{outline:2px dashed var(--pg-blue);outline-offset:3px}
+.rx-mine-toolbar{display:flex;justify-content:space-between;align-items:center;padding:10px;margin-bottom:14px;border:2px inset #c6c6bd;background:var(--pg-paper)}
+.rx-led{min-width:68px;text-align:center;padding:2px 6px;background:#1a151a;color:#ff655d;font:700 30px/1.2 Consolas,monospace;border:2px inset #aaa;font-variant-numeric:tabular-nums}
+.pg-dialog .rx-new-game{font:700 29px/1 sans-serif;min-height:42px;min-width:46px;padding:4px;background:#f2db87;color:#303b52}
+.rx-mine-viewport{max-height:min(56svh,560px);overflow:auto;overscroll-behavior:contain;padding:3px}
+.rx-mine-board{display:grid;grid-template-columns:repeat(var(--mine-columns,8),minmax(0,1fr));min-width:var(--mine-min-width,0px);border:3px inset #c2c6c8;background:#8b909b;gap:1px;user-select:none}
+.pg-dialog .rx-cell{aspect-ratio:1;min-width:0;min-height:0;padding:0;font:700 clamp(16px,3vw,22px)/1 Consolas,monospace;border:0;box-shadow:inset 2px 2px #fff9,inset -2px -2px #586270;background:#bfc6cd;color:#244dbe}
+.pg-dialog .rx-cell.is-open{box-shadow:none;background:#dce0e3}
+.rx-cell[data-number="2"]{color:#226f38}.rx-cell[data-number="3"]{color:#bc2222}.rx-cell[data-number="4"]{color:#682a99}.rx-cell[data-number="5"],.rx-cell[data-number="6"]{color:#873d1b}
+.pg-dialog .rx-cell.is-mine{background:#e69080;color:#251a25;box-shadow:none}
+.rx-mine-actions{display:flex;align-items:center;gap:14px;margin-top:16px;font-size:12px}
+.rx-mine-actions button[aria-pressed=true]{background:var(--pg-blue);color:white}
+.rx-mine-actions span{line-height:1.6}
+.pg-body .rx-mine-help{font-size:12px;line-height:1.6;margin:12px 0 0}
+.rx-mode-bar{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px}
+.rx-mode-bar button[aria-pressed=true]{background:var(--pg-blue);color:#fff}
+.rx-saver-stage{border:3px inset #bbb;background:#08131f;overflow:hidden}
+.rx-saver-stage canvas{display:block;width:100%;height:290px}
+.rx-saver-controls{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
+.rx-saver-controls output{margin-left:auto;font-size:13px}
+.rx-buddy-intro{display:grid;grid-template-columns:125px 1fr;gap:26px;align-items:center;padding:12px 0}
+.rx-paperclip svg{width:100%;height:auto;max-height:170px;display:block}
+.rx-buddy-intro p{min-height:46px;font-size:15px;line-height:1.7}
+.rx-buddy-actions{display:flex;flex-wrap:wrap;gap:12px}
+.rx-desktop-buddy{position:fixed;bottom:calc(var(--taskbar-height,64px) + 18px);right:18px;width:285px;padding:22px 20px 16px 91px;z-index:75;background:#fff5cc;border:2px solid #39445a;box-shadow:5px 5px 0 #1b26384d;color:#26324b;font:13px/1.6 Consolas,monospace}
+.rx-desktop-buddy .rx-paperclip{position:absolute;left:12px;top:27px;width:67px}
+.rx-desktop-buddy p{margin:10px 0 15px;min-height:75px}
+.rx-desktop-buddy button{background:#efe5bc;color:#26324b;border:1px solid #39445a;font:12px Consolas,monospace;padding:7px}
+.rx-desktop-buddy .rx-buddy-dismiss{position:absolute;right:7px;top:5px;font-size:22px;line-height:1;padding:1px 6px}
+.rx-error-stack{position:relative;margin:25px 24px 15px 0;padding-top:0;isolation:isolate}
+.rx-fake-error{position:relative;z-index:6;border:2px outset #aab2c4;background:var(--pg-paper);box-shadow:3px 3px 0 #18233540}
+.rx-error-title,.rx-error-echo{background:var(--pg-blue);color:white;font:700 14px Consolas,monospace;padding:6px 10px}
+.rx-error-echo{position:absolute;inset:0;transform:translate(calc(var(--layer)*6px),calc(var(--layer)*-6px));border:2px outset #aab2c4;z-index:1;pointer-events:none}
+.rx-error-message{display:flex;align-items:center;gap:20px;padding:24px}
+.rx-error-message h3{font-size:20px;line-height:1.4}
+.rx-error-message p{font-size:13px;margin:0}
+.rx-error-symbol{flex:none;background:#c93434;color:white;border:3px solid white;border-radius:50%;width:46px;height:46px;text-align:center;font:700 36px/40px Arial,sans-serif}
+.rx-error-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.rx-error-details{background:var(--pg-inset);border:1px inset #aaa;padding:15px;font:13px/1.8 Consolas,monospace;white-space:pre-wrap;margin-top:18px}
+.rx-blue-screen{background:#0000a8;color:#fff;padding:30px;font:15px/1.8 Consolas,monospace;min-height:300px}
+.rx-blue-screen>strong{display:table;margin:0 auto 24px;background:#d5d5d5;color:#0000a8;padding:2px 12px}
+.rx-blue-screen h3{color:#fff;font-size:22px;letter-spacing:0;overflow-wrap:anywhere}
+.pg-dialog .rx-blue-screen button{margin-top:15px;color:#000064;background:#e0e0d7}
+.pg-themes{grid-template-columns:repeat(5,1fr)}
+.pg-theme-xp{background:#ece9d8;color:#163361}.pg-theme-xp:before{background:#245edb}
+:root[data-palette=xp]{color-scheme:light;--bg:#a2c8ec;--panel:#f2efdf;--paper:#f2efdf;--ink:#213753;--muted:#42566d;--line:#214c9d;--accent:#1854b5;--title:#245edb;--title-ink:#fff;--coral:#e9ad5e;--on-coral:#253851;--teal:#7eaf87;--shadow:#12336b40;--bevel-light:#fff;--bevel-dark:#8d96ab;--gold:#886126;--cyan:#245e6d}
+[data-palette=xp] body{background-image:url('assets/retro/xp-hills.svg');background-size:cover;background-position:center;background-attachment:fixed}
+[data-palette=xp] .window-title,[data-palette=xp] .section-chrome,[data-palette=xp] .pg-titlebar{background:linear-gradient(#4b8af3,#245edb 22%,#1648bb 88%,#4a83e9);color:#fff}
+[data-palette=xp] .desktop-taskbar{background:linear-gradient(#4c86e8,#245bd1 18%,#1649bf);border-top-color:#8ab3ff;outline-color:#123780;color:white}
+[data-palette=xp] .launcher-button{background:linear-gradient(#78b75d,#3b8b3c 35%,#28692e);color:#fff;border-color:#235c25;box-shadow:inset 1px 1px #a3d391;min-width:104px;border-radius:0 9px 9px 0}
+[data-palette=xp] .taskbar-tabs>a,[data-palette=xp] .taskbar-tabs>button,[data-palette=xp] .taskbar-end .motion-button,[data-palette=xp] .taskbar-settings,[data-palette=xp] .desktop-clock{color:#fff;border-color:#8ab4f5;background:#1b52bc}
+[data-palette=xp] .desktop-clock{background:#1984cf;box-shadow:inset 1px 1px #77bfee}
+[data-palette=xp] .pg-dialog{--pg-paper:#ece9d8;--pg-ink:#213753;--pg-blue:#245edb;--pg-inset:#fffef6;--pg-muted:#42566d;border-color:#1648bb}
+[data-palette=xp] .pg-titlebar .pg-close{background:#cc4f32;color:white;border-color:#ffd6b8}
+@media(max-width:600px){.extra-shortcuts{grid-template-columns:1fr 1fr}.pg-mines-window .pg-body{padding:14px}.rx-mine-actions{gap:10px;font-size:11px}.rx-mode-bar{gap:7px}.rx-mode-bar button{font-size:12px;padding:6px 9px}.rx-saver-stage canvas{height:245px}.rx-saver-controls{gap:9px}.rx-saver-controls button{font-size:12px}.rx-buddy-intro{grid-template-columns:75px 1fr;gap:15px}.rx-buddy-intro p{font-size:13px}.rx-buddy-actions button{font-size:12px}.rx-error-message{padding:17px;gap:13px}.rx-error-message h3{font-size:17px}.rx-error-symbol{width:35px;height:35px;font-size:27px;line-height:29px}.rx-blue-screen{padding:20px;font-size:13px}.pg-themes{grid-template-columns:1fr 1fr}.rx-desktop-buddy{right:12px;width:min(285px,calc(100vw - 24px))}}
+@media(max-width:380px){[data-palette=xp] .launcher-button{min-width:0}.rx-led{min-width:58px;font-size:27px}.rx-buddy-intro{grid-template-columns:1fr}.rx-buddy-intro>.rx-paperclip{width:80px;margin:auto}}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" shape-rendering="crispEdges" role="img" aria-label="Pixel paint palette">
+    <path fill="#303b52" d="M10 4h11v2h4v3h3v4h2v8h-2v4h-4v2h-7v-2h-4v3H7v-2H4v-4H2v-8h2v-4h3V7h3z"/>
+    <path fill="#eee5d2" d="M10 6h11v2h3v3h2v3h2v7h-2v3h-3v1h-5v-2h-6v3H8v-2H6v-3H4v-6h2v-4h3V9h1z"/>
+    <rect x="9" y="10" width="4" height="4" fill="#ed755e"/>
+    <rect x="17" y="8" width="4" height="4" fill="#123ca5"/>
+    <rect x="22" y="15" width="4" height="4" fill="#70b8b1"/>
+    <rect x="7" y="18" width="4" height="4" fill="#e5be65"/>
+    <path fill="#303b52" d="M16 16h4v5h-4z"/>
+    <path fill="#faf7ed" d="M17 17h2v3h-2z"/>
+    <path fill="#303b52" d="M25 2h3v4h-2v4h-2v4h-2v4h-4v-3h2v-4h2V7h2V3h1z"/>
+    <path fill="#ed755e" d="M25 3h2v3h-2v4h-2v4h-2v2h-1v-4h2V8h2V4h1z"/></svg>

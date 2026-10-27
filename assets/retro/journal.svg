@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" shape-rendering="crispEdges" role="img" aria-label="Discovery journal">
+    <path fill="#303b52" d="M5 3h22v25H7v2H3V5h2z"/>
+    <path fill="#ed755e" d="M5 5h4v22H5z"/>
+    <path fill="#eee5d2" d="M10 5h15v20H10z"/>
+    <path fill="#faf7ed" d="M9 26h16v2H9z"/>
+    <path fill="#303b52" d="M13 9h9v2h-9zM13 14h9v1h-9zM13 18h7v1h-7z"/>
+    <path fill="#70b8b1" d="M16 3h5v8l-2-2-3 2z"/>
+    <path fill="#303b52" d="M3 7h4v2H3zM3 13h4v2H3zM3 19h4v2H3z"/></svg>
